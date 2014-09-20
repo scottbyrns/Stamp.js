@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Stamp.js by scottbyrns</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Stamp.js</h1>
+        <p>Stamp.js is a shadow dom library to stamp out new elements in a document from imported templates.</p>
+        <p class="view"><a href="https://github.com/scottbyrns/Stamp.js">View the Project on GitHub <small>scottbyrns/Stamp.js</small></a></p>
+        <ul>
+          <li><a href="https://github.com/scottbyrns/Stamp.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/scottbyrns/Stamp.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/scottbyrns/Stamp.js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="stampjs-overview" class="anchor" href="#stampjs-overview"><span class="octicon octicon-link"></span></a>Stamp.js Overview</h1>
+
+<p>Stamp.js is a shadow dom library to stamp out new elements in a document from imported templates.</p>
+
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<h5>
+<a name="indexhtml" class="anchor" href="#indexhtml"><span class="octicon octicon-link"></span></a>index.html</h5>
+
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Stamp.js Example&lt;/title&gt;
+        &lt;link rel="import" id="a-stamp" href="a-stamp.html"&gt;&lt;/link&gt;
+        &lt;script type="text/javascript" src="../Stamp.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;a-stamp&gt;
+            &lt;value&gt;3&lt;/value&gt;
+            &lt;units&gt;&amp;cent;&lt;/units&gt;
+        &lt;/a-stamp&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+<h5>
+<a name="a-stamphtml" class="anchor" href="#a-stamphtml"><span class="octicon octicon-link"></span></a>a-stamp.html</h5>
+
+<pre><code>&lt;template&gt;
+    &lt;style&gt;
+    div {
+        display:inline-block;
+        width:200px;
+        height:350px;
+        border:5px dotted #CACACA;
+    }
+    h1 {
+        line-height:350px;
+        text-align:center;
+        color:#1F1F1F;
+        background-color:#FAFAFA;
+        margin-top:0px;
+    }
+    &lt;/style&gt;
+    &lt;div&gt;
+        &lt;h1&gt;
+            &lt;content select="value"&gt;&lt;/content&gt;
+            &lt;content select="units"&gt;&lt;/content&gt;
+        &lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+<h3>
+<a name="structure" class="anchor" href="#structure"><span class="octicon octicon-link"></span></a>Structure</h3>
+
+<h4>
+<a name="imports" class="anchor" href="#imports"><span class="octicon octicon-link"></span></a>Imports</h4>
+
+<p>To import templates use the link import now available in new browsers.</p>
+
+<pre><code>
+&lt;link rel="import" id="a-strong-header" href="a-strong-header.html"&gt;&lt;/link&gt;
+
+</code></pre>
+
+<p>Stamp.js uses the id from the link to attach the template to a stamped out element.</p>
+
+<h4>
+<a name="templates" class="anchor" href="#templates"><span class="octicon octicon-link"></span></a>Templates</h4>
+
+<p>Stamp.js uses the new template tag to populate the shadow dom of stamped elements.</p>
+
+<p>Every template must have a &lt;template /&gt; tag for an opening and closing tag.
+Simply use the &lt;content /&gt; selector to reference the values that will be mapped to the template.</p>
+
+<pre><code>&lt;template&gt;
+    &lt;strong&gt;
+        &lt;content select="h1"&gt;&lt;/content&gt;
+    &lt;/strong&gt;
+&lt;/template&gt;
+</code></pre>
+
+<p>In this example we select the h1 to populate the template. In this case wrapping it in a &lt;strong /&gt; tag.</p>
+
+<p>To provide this element with its required values we place an &lt;h1 /&gt; tag in our stamped element.</p>
+
+<pre><code>&lt;a-strong-header&gt;
+    &lt;h1&gt;Strong Header&lt;/h1&gt;
+&lt;/a-strong-header&gt;
+</code></pre>
+
+<h4>
+<a name="stampjs" class="anchor" href="#stampjs"><span class="octicon octicon-link"></span></a>Stamp.js</h4>
+
+<p>The Stamp.js library is a closure that scans the document for imports and maps new first class html tags to the imported templates.</p>
+
+<p>Stamp.js is designed to run once then end its life cycle.</p>
+
+<p>All imports need to be declared before Stamp.js is included in your document otherwise they will be ignored by Stamp.js.</p>
+
+<pre><code>&lt;head&gt;
+    &lt;link rel="import" id="a-strong-header" href="a-strong-header.html"&gt;&lt;/link&gt;
+    &lt;script type="text/javascript" src="../Stamp.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code></pre>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/scottbyrns">scottbyrns</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
