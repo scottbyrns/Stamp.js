@@ -7,50 +7,62 @@
 		<link rel="import" id="pie-chart" href="../stamps/pie-chart.html"></link>
 	</head>
 	<body>
-		<qr-code>
-			<data>http://scottbyrns.github.io/Stamp.js</data>
-		</qr-code>
-		<bar-graph>
-			<width>600</width>
-			<height>300</height>
-			<data>
-				{
-				    "labels": ["January", "February", "March", "April", "May", "June", "July"],
-				    "datasets": [
-				        {
-				            "data": [65, 59, 80, 81, 56, 55, 40]
-				        }
-				    ]
-				}
-			</data>
-		</bar-graph>
-		<pie-chart>
-			<width>400</width>
-			<height>400</height>
-			<data>
-				[
-				    {
-				        "value": 300,
-				        "color":"#F7464A",
-				        "highlight": "#FF5A5E",
-				        "label": "China"
-				    },
-				    {
-				        "value": 50,
-				        "color": "#46BFBD",
-				        "highlight": "#5AD3D1",
-				        "label": "Europe"
-				    },
-				    {
-				        "value": 100,
-				        "color": "#FDB45C",
-				        "highlight": "#FFC870",
-				        "label": "Africa"
-				    }
-				]
-			</data>
-		</pi-chart>
-		
+		<header>
+			<h1>Stamp.js</h1>
+			<qr-code>
+				<data>http://scottbyrns.github.io/Stamp.js</data>
+			</qr-code>
+		</header>
+		<section>
+			<a-stamp>
+				<value>3</value>
+				<units>&cent;</units>
+			</a-stamp>
+		</section>
+		<section>
+			<bar-graph>
+				<width>600</width>
+				<height>300</height>
+				<data>
+					{
+					    "labels": ["January", "February", "March", "April", "May", "June", "July"],
+					    "datasets": [
+					        {
+					            "data": [65, 59, 80, 81, 56, 55, 40]
+					        }
+					    ]
+					}
+				</data>
+			</bar-graph>
+		</section>
+		<section>
+			<pie-chart>
+				<width>400</width>
+				<height>400</height>
+				<data>
+					[
+					    {
+					        "value": 300,
+					        "color":"#F7464A",
+					        "highlight": "#FF5A5E",
+					        "label": "China"
+					    },
+					    {
+					        "value": 50,
+					        "color": "#46BFBD",
+					        "highlight": "#5AD3D1",
+					        "label": "Europe"
+					    },
+					    {
+					        "value": 100,
+					        "color": "#FDB45C",
+					        "highlight": "#FFC870",
+					        "label": "Africa"
+					    }
+					]
+				</data>
+			</pi-chart>
+		</section>
 		<script type="text/javascript" src="../Stamp.js"></script>
 	</body>
 </html>
