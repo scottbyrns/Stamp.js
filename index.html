@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Stamp.js by scottbyrns</title>
+	
+	<title>Stamp.js Example</title>
+	<link rel="import" id="a-stamp" href="a-stamp.html"></link>
+	<script type="text/javascript" src="javascripts/Stamp.js"></script>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -35,8 +39,18 @@
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<h5>
-<a name="indexhtml" class="anchor" href="#indexhtml"><span class="octicon octicon-link"></span></a>index.html</h5>
+
+        <a-stamp>
+            <value>3</value>
+            <units>&cent;</units>
+        </a-stamp>
+
+		<p>
+			<br /><br />
+		</p>
+
+<h4>
+<a name="indexhtml" class="anchor" href="#indexhtml"><span class="octicon octicon-link"></span></a>File: index.html</h4>
 
 <pre><code>&lt;html&gt;
     &lt;head&gt;
@@ -54,8 +68,9 @@
 
 </code></pre>
 
-<h5>
-<a name="a-stamphtml" class="anchor" href="#a-stamphtml"><span class="octicon octicon-link"></span></a>a-stamp.html</h5>
+
+<h4>
+<a name="a-stamphtml" class="anchor" href="#a-stamphtml"><span class="octicon octicon-link"></span></a>File: a-stamp.html</h4>
 
 <pre><code>&lt;template&gt;
     &lt;style&gt;
