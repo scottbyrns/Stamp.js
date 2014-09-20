@@ -2,17 +2,26 @@
     <style>
     h1 {
         line-height:180px;
-        text-align:left;
-        color:#FAFAFA;
+        text-align:center;
+        color:#1D1D1D;
         background-color:#FAFAFA;
         margin-top:0px;
-		background-image:url(http://photok12.org/photos/portrait5_national_geo_cover.jpg);
+		background: #feffe8;
+		background: #eaefb5;
+		background: -moz-linear-gradient(-45deg,  #eaefb5 0%, #e1e9a0 100%);
+		background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#eaefb5), color-stop(100%,#e1e9a0));
+		background: -webkit-linear-gradient(-45deg,  #eaefb5 0%,#e1e9a0 100%);
+		background: -o-linear-gradient(-45deg,  #eaefb5 0%,#e1e9a0 100%);
+		background: -ms-linear-gradient(-45deg,  #eaefb5 0%,#e1e9a0 100%);
+		background: linear-gradient(135deg,  #eaefb5 0%,#e1e9a0 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaefb5', endColorstr='#e1e9a0',GradientType=1 );
+		
 		background-size:100%;
-		padding-left:25px;
+
     }
 	
 
-	.stamp {
+	div {
 		width: 280px;
 		height: 180px;
 		display: inline-block;
@@ -25,15 +34,15 @@
 		background: radial-gradient(
 			transparent 0px, 
 			transparent 4px, 
-			#CCCDCA 4px,
-			#CCDDCA
+			#feffe8 4px,
+			#feffe8
 		);
 		/*reducing the gradient size*/
 		background-size: 20px 20px;
 		/*Offset to move the holes to the edge*/
 		background-position: -10px -10px;
 	}
-	.stamp:after {
+	div:after {
 		content: '';
 		position: absolute;
 		/*We can shrink the pseudo element here to hide the shadow edges*/
@@ -44,7 +53,7 @@
 		z-index: -1;
 	}
 	/*Some text*/
-	.stamp:before {
+	div:before {
 		content: '';
 		position: absolute;
 		bottom: 0; left: 0;
@@ -58,7 +67,7 @@
 	
     </style>
 	<span>
-		<div class="stamp">
+		<div>
 	        <h1>
 	            <content select="value"></content>
 	            <content select="units"></content>
