@@ -66,8 +66,8 @@ Stamp.js uses the id from the link to attach the template to a stamped out eleme
 
 Stamp.js uses the new template tag to populate the shadow dom of stamped elements.
 
-Every template must have a <template /> tag for an opening and closing tag.
-Simply use the <content /> selector to reference the values that will be mapped to the template.
+Every template must have a &lt;template /> tag for an opening and closing tag.
+Simply use the &lt;content /> selector to reference the values that will be mapped to the template.
 
 ```
 <template>
@@ -77,9 +77,9 @@ Simply use the <content /> selector to reference the values that will be mapped 
 </template>
 ```
 
-In this example we select the h1 to populate the template. In this case wrapping it in a <strong /> tag.
+In this example we select the h1 to populate the template. In this case wrapping it in a &lt;strong /> tag.
 
-To provide this element with its required values we place an <h1 /> tag in our stamped element.
+To provide this element with its required values we place an &lt;h1 /> tag in our stamped element.
 
 ```
 <a-strong-header>
