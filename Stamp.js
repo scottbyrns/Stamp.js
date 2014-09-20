@@ -7,6 +7,10 @@
 			createdCallback: { value: function() {
 				var clone = document.importNode(elementTemplate.getElementsByTagName("template")[0].content, true);
 				this.createShadowRoot().appendChild(clone);
+				var constructor = elementTemplate.getElementsByTagName("template")[0].getAttribute("constructor");
+				if (constructor) {
+					window[constructor].call(this);
+				}
 			}}
 		});
 		document.registerElement(elementName, {prototype: proto});
