@@ -1,12 +1,14 @@
 <template>
     <style>
-
     h1 {
         line-height:180px;
-        text-align:center;
-        color:#1F1F1F;
+        text-align:left;
+        color:#FAFAFA;
         background-color:#FAFAFA;
         margin-top:0px;
+		background-image:url(http://photok12.org/photos/portrait5_national_geo_cover.jpg);
+		background-size:100%;
+		padding-left:25px;
     }
 	
 
@@ -17,13 +19,14 @@
 		padding: 10px;
 		background: white;
 		position: relative;
+		
 	
 		/*The stamp cutout will be created using crisp radial gradients*/
 		background: radial-gradient(
 			transparent 0px, 
 			transparent 4px, 
-			white 4px,
-			white
+			#CCCDCA 4px,
+			#CCDDCA
 		);
 		/*reducing the gradient size*/
 		background-size: 20px 20px;
@@ -42,7 +45,7 @@
 	}
 	/*Some text*/
 	.stamp:before {
-		content: 'CSS3';
+		content: '';
 		position: absolute;
 		bottom: 0; left: 0;
 		font: bold 24px arial;
@@ -54,10 +57,13 @@
 
 	
     </style>
-	<div class="stamp">
-        <h1>
-            <content select="value"></content>
-            <content select="units"></content>
-        </h1>		
-	</div>
+	<span>
+		<div class="stamp">
+	        <h1>
+	            <content select="value"></content>
+	            <content select="units"></content>
+	        </h1>		
+		</div>
+		
+	</span>
 </template>
