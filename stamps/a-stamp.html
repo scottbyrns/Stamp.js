@@ -1,0 +1,86 @@
+
+<template>
+    <style>
+	:host {
+		display:inline-block;
+		height: auto;
+		width:auto;
+		margin:0px;
+		padding:0px;
+	}
+    h1 {
+        line-height:180px;
+        text-align:center;
+        color:#1D1D1D;
+        background-color:#FAFAFA;
+        margin-top:0px;
+		background: #feffe8;
+		background: #eaefb5;
+		background: -moz-linear-gradient(-45deg,  #eaefb5 0%, #e1e9a0 100%);
+		background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#eaefb5), color-stop(100%,#e1e9a0));
+		background: -webkit-linear-gradient(-45deg,  #eaefb5 0%,#e1e9a0 100%);
+		background: -o-linear-gradient(-45deg,  #eaefb5 0%,#e1e9a0 100%);
+		background: -ms-linear-gradient(-45deg,  #eaefb5 0%,#e1e9a0 100%);
+		background: linear-gradient(135deg,  #eaefb5 0%,#e1e9a0 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaefb5', endColorstr='#e1e9a0',GradientType=1 );
+		
+		background-size:100%;
+
+    }
+	
+
+	div {
+		width: 280px;
+		height: 180px;
+		display: inline-block;
+		padding: 10px;
+		background: white;
+		position: relative;
+		
+	
+		/*The stamp cutout will be created using crisp radial gradients*/
+		background: radial-gradient(
+			transparent 0px, 
+			transparent 4px, 
+			#feffe8 4px,
+			#feffe8
+		);
+		/*reducing the gradient size*/
+		background-size: 20px 20px;
+		/*Offset to move the holes to the edge*/
+		background-position: -10px -10px;
+	}
+	div:after {
+		content: '';
+		position: absolute;
+		/*We can shrink the pseudo element here to hide the shadow edges*/
+		left: 5px; top: 5px; right: 5px; bottom: 5px;
+		/*Shadow - doesn't look good because of the stamp cutout. We can still move this into another pseudo element behind the .stamp main element*/
+		box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+		/*pushing it back*/
+		z-index: -1;
+	}
+	/*Some text*/
+	div:before {
+		content: '';
+		position: absolute;
+		bottom: 0; left: 0;
+		font: bold 24px arial;
+		color: white;
+		opacity: 0.75;
+		line-height: 100%;
+		padding: 20px;
+	}
+
+	
+    </style>
+	<span>
+		<div>
+	        <h1>
+	            <content select="value"></content>
+	            <content select="units"></content>
+	        </h1>		
+		</div>
+		
+	</span>
+</template>
