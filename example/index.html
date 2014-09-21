@@ -8,6 +8,7 @@
 		<link rel="import" href="../stamps/bar-graph.html"></link>
 		<link rel="import" href="../stamps/pie-chart.html"></link>
 		<link rel="import" href="../stamps/mark-down.html"></link>
+		<link rel="import" href="../stamps/json-table.html"></link>
 		<style>
 		section {
 			margin:10px;
@@ -181,7 +182,28 @@ Simply use the &lt;content /> selector to reference the values that will be mapp
 
 				</mark-down>
 			</example-stamp>
-			
+			<json-table>
+		[
+		    {
+		        "value": 300,
+		        "color":"#F7464A",
+		        "highlight": "#FF5A5E",
+		        "label": "China"
+		    },
+		    {
+		        "value": 50,
+		        "color": "#46BFBD",
+		        "highlight": "#5AD3D1",
+		        "label": "Europe"
+		    },
+		    {
+		        "value": 100,
+		        "color": "#FDB45C",
+		        "highlight": "#FFC870",
+		        "label": "Africa"
+		    }
+		]
+			</json-table>			
 		</section>
 		
 		<script type="text/javascript" src="../Stamp.js"></script>
