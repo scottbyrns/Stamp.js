@@ -7,6 +7,7 @@
 		<link rel="import" href="../stamps/qr-code.html"></link>
 		<link rel="import" href="../stamps/bar-graph.html"></link>
 		<link rel="import" href="../stamps/pie-chart.html"></link>
+		<link rel="import" href="../stamps/mark-down.html"></link>
 		<style>
 		section {
 			margin:10px;
@@ -157,6 +158,32 @@
 			</code-snippet>
 			
 		</section>
+		
+		<section>
+			
+			<example-stamp>
+				<mark-down>
+
+####Mark Down
+
+Stamp.js uses the new template tag to populate the shadow dom of stamped elements.
+
+Every template must have a &lt;template /> tag for an opening and closing tag.
+Simply use the &lt;content /> selector to reference the values that will be mapped to the template.
+
+```
+<template element="a-stamp">
+	<strong>
+		<content select="h1"></content>
+	</strong>
+</template>
+```
+
+				</mark-down>
+			</example-stamp>
+			
+		</section>
+		
 		<script type="text/javascript" src="../Stamp.js"></script>
 
 	</body>
