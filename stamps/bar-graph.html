@@ -1,4 +1,4 @@
-<template constructor="BarGraph">
+<template constructor="BarGraph" element="bar-graph">
 	<style>
 	:host {
 		display:inline-block;
@@ -12,7 +12,7 @@
 	}
 	</style>
 	<script>
-	BarGraph = (function () {
+	BarGraph = (typeof BarGraph === "function") ? BarGraph : (function () {
 		
 		/*!
 		 * Chart.js

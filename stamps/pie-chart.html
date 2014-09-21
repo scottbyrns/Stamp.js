@@ -1,4 +1,4 @@
-<template constructor="PieChart">
+<template constructor="PieChart" element="pie-chart">
 	<style>
 	:host {
 		display:inline-block;
@@ -12,7 +12,7 @@
 	}
 	</style>
 	<script>
-	PieChart = (function () {
+	PieChart = (typeof PieChart === "function") ? PieChart : (function () {
 		
 		/*!
 		 * Chart.js

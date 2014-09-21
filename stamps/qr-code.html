@@ -1,4 +1,4 @@
-<template constructor="QRCode">
+<template constructor="QRCode" element="qr-code">
 	<style>
 	:host {
 		display:inline-block;
@@ -6,18 +6,19 @@
 		width:auto;
 		border:5px solid #FAFAFA;
 	}
+	
 
 	:host div {
 		padding:0px;
 		margin:0px;
-		margin-bottom:-5px;
+		margin-bottom: -5px;
 	}
+	
 	
 	</style>
 	<script>
-	QRCode = (function () {
-
-
+	
+	QRCode = (typeof QRCode === "function") ? QRCode : (function () {
 		var QRCode = (function(){
 
 		/* Quick overview: QR code composed of 2D array of modules (a rectangular
