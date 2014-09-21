@@ -1,5 +1,6 @@
 <template element="json-table" constructor="JsonTable">
-	<content></content>
+	<div>
+	</div>
 	<script>
 	JsonTable = (typeof JsonTable === "javascript") ? JsonTable : (function () {
 
@@ -782,8 +783,8 @@
 		return function () {
 			var tbl = prettyPrint(JSON.parse(this.innerHTML));
 			// this.shadowRoot.innerHTML = "";
-			
-			this.shadowRoot.appendChild(tbl);
+			this.shadowRoot.getElementsByTagName("div")[0].innerHTML = "";
+			this.shadowRoot.getElementsByTagName("div")[0].appendChild(tbl);
 		
 		};
 	}());

@@ -1285,7 +1285,7 @@
 		}());
 	
 		return function () {
-			this.innerHTML = marked(this.innerHTML);
+			this.shadowRoot.getElementsByTagName("div")[0].innerHTML = marked(this.innerHTML);
 		};
 		
 	}());
