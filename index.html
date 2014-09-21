@@ -6,7 +6,8 @@
     <title>Stamp.js by scottbyrns</title>
 	
 	<title>Stamp.js Example</title>
-	<link rel="import" id="a-stamp" href="a-stamp.html"></link>
+	<link rel="import" id="a-stamp" href="stamps/a-stamp.html"></link>
+	<link rel="import" id="qr-code" href="stamps/qr-code.html"></link>
 	<script type="text/javascript" src="javascripts/Stamp.js"></script>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
@@ -37,13 +38,18 @@
 <p>Stamp.js is a shadow dom library to stamp out new elements in a document from imported templates.</p>
 
 <h2>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Examples</h2>
+
 
 
         <a-stamp>
             <value>3</value>
             <units>&cent;</units>
         </a-stamp>
+		
+		<qr-code>
+			<data>http://scottbyrns.github.io/Stamp.js/</data>
+		</qr-code>
 
 		<p>
 			<br /><br />
