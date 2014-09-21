@@ -1,0 +1,163 @@
+<html>
+	<head>
+		<title>Stamp.js Example</title>
+		<link rel="import" id="example-stamp" href="../stamps/example-stamp.html"></link>
+		<link rel="import" id="code-snippet" href="../stamps/code-snippet.html"></link>
+		<link rel="import" id="a-stamp" href="../stamps/a-stamp.html"></link>
+		<link rel="import" id="qr-code" href="../stamps/qr-code.html"></link>
+		<link rel="import" id="bar-graph" href="../stamps/bar-graph.html"></link>
+		<link rel="import" id="pie-chart" href="../stamps/pie-chart.html"></link>
+
+		<style>
+		section {
+			margin:10px;
+			max-width:50%;
+			margin-left:25%;
+		}
+		h1 {
+			text-align:center;
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Stamp.js</h1>
+		</header>
+		<section>
+			<example-stamp>
+				<a-stamp>
+					<value>3</value>
+					<units>&cent;</units>
+				</a-stamp>
+			</example-stamp>
+			<code-snippet>
+				<name>A Stamp</name>
+				<type>xml</type>
+				<code>
+<a-stamp>
+	<value>3</value>
+	<units>&cent;</units>
+</a-stamp>
+				</code>
+			</code-snippet>
+		</section>
+		<section>
+			<example-stamp>
+				<qr-code>
+					<data>http://scottbyrns.github.io/Stamp.js</data>
+				</qr-code>
+			</example-stamp>
+			<code-snippet>
+				<name>QR Code</name>
+				<type>xml</type>
+				<code>
+<qr-code>
+	<data>http://scottbyrns.github.io/Stamp.js</data>
+</qr-code>
+				</code>
+			</code-snippet>
+		</section>
+		<section>
+			<example-stamp>
+				<bar-graph>
+					<width>600</width>
+					<height>300</height>
+					<data>
+						{
+						    "labels": ["January", "February", "March", "April", "May", "June", "July"],
+						    "datasets": [
+						        {
+						            "data": [65, 59, 80, 81, 56, 55, 40]
+						        }
+						    ]
+						}
+					</data>
+				</bar-graph>
+			</example-stamp>
+			<code-snippet>
+				<name>Bar Graph Example Data</name>
+				<type>html</type>
+				<code>
+<bar-graph>
+	<width>600</width>
+	<height>300</height>
+	<data>
+		{
+		    "labels": ["January", "February", "March", "April", "May", "June", "July"],
+		    "datasets": [
+		        {
+		            "data": [65, 59, 80, 81, 56, 55, 40]
+		        }
+		    ]
+		}
+	</data>
+</bar-graph>
+				</code>
+			</code-snippet>
+		</section>
+		<section>
+			<example-stamp>
+				<pie-chart>
+					<width>400</width>
+					<height>400</height>
+					<data>
+						[
+						    {
+						        "value": 300,
+						        "color":"#F7464A",
+						        "highlight": "#FF5A5E",
+						        "label": "China"
+						    },
+						    {
+						        "value": 50,
+						        "color": "#46BFBD",
+						        "highlight": "#5AD3D1",
+						        "label": "Europe"
+						    },
+						    {
+						        "value": 100,
+						        "color": "#FDB45C",
+						        "highlight": "#FFC870",
+						        "label": "Africa"
+						    }
+						]
+					</data>
+				</pie-chart>
+			</example-stamp>
+			<code-snippet>
+				<name>Pie Chart Example Data</name>
+				<type>xml</type>
+<code>
+<pie-chart>
+	<width>400</width>
+	<height>400</height>
+	<data>
+		[
+		    {
+		        "value": 300,
+		        "color":"#F7464A",
+		        "highlight": "#FF5A5E",
+		        "label": "China"
+		    },
+		    {
+		        "value": 50,
+		        "color": "#46BFBD",
+		        "highlight": "#5AD3D1",
+		        "label": "Europe"
+		    },
+		    {
+		        "value": 100,
+		        "color": "#FDB45C",
+		        "highlight": "#FFC870",
+		        "label": "Africa"
+		    }
+		]
+	</data>
+</pi-chart>
+</code>
+			</code-snippet>
+			
+		</section>
+		<script type="text/javascript" src="../Stamp.js"></script>
+	</body>
+</html>

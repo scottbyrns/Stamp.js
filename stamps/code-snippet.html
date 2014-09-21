@@ -1,0 +1,102 @@
+<template constructor="CodeSnippet">
+
+	<style>
+	
+	:host {
+		display:block;
+		margin:0px;
+		height:auto;
+		width:auto;
+	}
+	
+	pre {
+		margin:0px;
+		background:#FAFAFA;
+		border-bottom:1px solid #DDD;
+		border-left:1px solid #DDD;
+		border-right:1px solid #DDD;
+		border-bottom-left-radius: .3em;
+		border-bottom-right-radius: .3em;
+		padding-left:20px;
+		padding-top:10px;
+		padding-right:20px;
+		opacity:0;
+		-webkit-transition: opacity .6s;
+		-moz-transition: opacity .6s;
+		transition: opacity .6s;
+		-webkit-transition: max-height .6s;
+		-moz-transition: max-height .6s;
+		transition: max-height .6s;
+		overflow:scroll;
+		max-height:100px;
+	}
+	
+	h1 {
+		font-family:sans-serif;
+		font-size:1.5em;
+		font-weight:100;
+		background:#F1F1F1;
+		margin-bottom:0px;
+		border-top-left-radius: .2em;
+		border-top-right-radius: .2em;
+		padding:5px;
+		color:#999;
+		border-top:1px solid #DDD;
+		border-left:1px solid #DDD;
+		border-right:1px solid #DDD;
+		border-bottom:1px solid #DDD;
+	}
+	
+	h1 span {
+		font-size:0.8em;
+		color:#AAA;
+		float:right;
+		line-height:1.5em;
+		margin-right:.2em;
+		text-transform:uppercase;
+	}
+	
+	
+.hljs{display:block;overflow-x:auto;padding:.5em;background:#f0f0f0;-webkit-text-size-adjust:none}.hljs,.hljs-subst,.hljs-tag .hljs-title,.nginx .hljs-title{color:black}.hljs-string,.hljs-title,.hljs-constant,.hljs-parent,.hljs-tag .hljs-value,.hljs-rules .hljs-value,.hljs-preprocessor,.hljs-pragma,.haml .hljs-symbol,.ruby .hljs-symbol,.ruby .hljs-symbol .hljs-string,.hljs-template_tag,.django .hljs-variable,.smalltalk .hljs-class,.hljs-addition,.hljs-flow,.hljs-stream,.bash .hljs-variable,.apache .hljs-tag,.apache .hljs-cbracket,.tex .hljs-command,.tex .hljs-special,.erlang_repl .hljs-function_or_atom,.asciidoc .hljs-header,.markdown .hljs-header,.coffeescript .hljs-attribute{color:#800}.smartquote,.hljs-comment,.hljs-annotation,.hljs-template_comment,.diff .hljs-header,.hljs-chunk,.asciidoc .hljs-blockquote,.markdown .hljs-blockquote{color:#888}.hljs-number,.hljs-date,.hljs-regexp,.hljs-literal,.hljs-hexcolor,.smalltalk .hljs-symbol,.smalltalk .hljs-char,.go .hljs-constant,.hljs-change,.lasso .hljs-variable,.makefile .hljs-variable,.asciidoc .hljs-bullet,.markdown .hljs-bullet,.asciidoc .hljs-link_url,.markdown .hljs-link_url{color:#080}.hljs-label,.hljs-javadoc,.ruby .hljs-string,.hljs-decorator,.hljs-filter .hljs-argument,.hljs-localvars,.hljs-array,.hljs-attr_selector,.hljs-important,.hljs-pseudo,.hljs-pi,.haml .hljs-bullet,.hljs-doctype,.hljs-deletion,.hljs-envvar,.hljs-shebang,.apache .hljs-sqbracket,.nginx .hljs-built_in,.tex .hljs-formula,.erlang_repl .hljs-reserved,.hljs-prompt,.asciidoc .hljs-link_label,.markdown .hljs-link_label,.vhdl .hljs-attribute,.clojure .hljs-attribute,.asciidoc .hljs-attribute,.lasso .hljs-attribute,.coffeescript .hljs-property,.hljs-phony{color:#88f}.hljs-keyword,.hljs-id,.hljs-title,.hljs-built_in,.css .hljs-tag,.hljs-javadoctag,.hljs-phpdoc,.hljs-dartdoc,.hljs-yardoctag,.smalltalk .hljs-class,.hljs-winutils,.bash .hljs-variable,.apache .hljs-tag,.hljs-type,.hljs-typename,.tex .hljs-command,.asciidoc .hljs-strong,.markdown .hljs-strong,.hljs-request,.hljs-status{font-weight:bold}.asciidoc .hljs-emphasis,.markdown .hljs-emphasis{font-style:italic}.nginx .hljs-built_in{font-weight:normal}.coffeescript .javascript,.javascript .xml,.lasso .markup,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}
+	</style>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
+	
+	<h1>
+		<content select="name"></content>
+		<span> <content select="type"></content> </span>
+	</h1>
+	
+	<pre>
+		<code>
+			<content select="code"></content>
+		</code>
+	</pre>
+	<script>
+	CodeSnippet = function () {
+		if (window.hljs) {
+			try {
+				this.shadowRoot.getElementsByTagName("code")[0].className = this.getElementsByTagName("type")[0].innerHTML;
+				this.getElementsByTagName("code")[0].innerHTML = this.getElementsByTagName("code")[0].innerHTML.replace(/[<>&\n]/g, function(x) {
+				    return {
+				        '<': '&lt;',
+				        '>': '&gt;',
+				        '&': '&amp;',
+				       '\n': '<br />'
+				    }[x];
+				});;
+				window.hljs.highlightBlock(this.getElementsByTagName("code")[0]);
+				this.shadowRoot.getElementsByTagName("code")[0].innerHTML = this.getElementsByTagName("code")[0].innerHTML;
+				this.shadowRoot.getElementsByTagName("pre")[0].style.opacity = "1.0";
+				this.shadowRoot.getElementsByTagName("pre")[0].style.maxHeight = "1000px";
+			}
+			catch (e) {}
+		}
+		else {
+			setTimeout(CodeSnippet.bind(this), 200);
+		}
+		
+	}
+	</script>
+	
+	
+</template>

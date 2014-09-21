@@ -5,14 +5,6 @@
 		height: auto;
 		width:auto;
 		border:5px solid #FAFAFA;
-		margin:0px;
-		padding:0px;
-		float:right;
-	}
-	:host div {
-		padding:0px;
-		margin:0px;
-		margin-bottom:-5px;
 	}
 	
 	</style>
@@ -776,7 +768,7 @@
 		return function () {
 			try {
 				var data = this.getElementsByTagName("data")[0].innerHTML;
-				this.innerHTML = "<data><img src=\"" + QRCode.generatePNG(data) + '" /></data>';
+				this.shadowRoot.getElementsByTagName("div")[0].innerHTML = "<data><img src=\"" + QRCode.generatePNG(data) + '" /></data>';
 			}
 			catch (e) {}
 		}
