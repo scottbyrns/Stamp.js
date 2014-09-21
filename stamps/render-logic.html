@@ -1,0 +1,126 @@
+<template element="render-logic" constructor="RenderLogic">
+	
+	<content></content>
+	
+	<script type="text/javascript">
+	RenderLogic = (typeof RenderLogic === "function") ? RenderLogic : (function () {
+		
+		var templateTags = [
+		{
+			tag: "repeat-for",
+			arguments: [
+				"variable",
+				"in",
+				"do"
+			],
+			callback: function (value, inclusive, byproduct, template) {
+				try {
+					var scopes = inclusive.split(".");
+					var object = window;
+					for (var i = 0, len = scopes.length; i < len; i += 1) {
+						object = object[scopes[i]];
+					}
+					
+
+					var re = /{{\s*([^}]+)\s*}}/g;
+					var nodes = [];
+					
+					for (var i = 0, len = object.length; i < len; i += 1) {
+						try {
+							Object.observe(object[i], function () {
+								RenderLogic.call(this, template);
+							}.bind(this));
+						}
+						catch (e) {}
+
+						var clone = byproduct;
+						while (item = re.exec(clone)) {
+							var replacement = object[i];
+							var itemScope = item[1].split(".");
+							if (itemScope.length > 1) {
+								for (var iSi = 1, iSlen = itemScope.length; iSi < iSlen; iSi += 1) {
+									replacement = replacement[itemScope[iSi]];
+								}
+								
+							}
+
+							clone = clone.replace("{{" + item[1] + "}}", replacement);
+						}
+						
+						nodes.push(clone);
+						
+					}
+
+					return nodes.join("");
+
+				}
+				catch (e) {
+					console.error(e);
+				}
+			}
+		},
+		{
+			tag: "if-true",
+			callback: function () {
+				
+			}
+		}
+		];
+		
+		return function (template) {
+			
+			if (template) {
+				this.innerHTML = template;
+			}
+			template = this.innerHTML;
+			
+			
+			for (var i = 0, len = templateTags.length; i < len; i += 1) {
+				var elements = this.getElementsByTagName(templateTags[i].tag);
+				for (var el = 0, elen = elements.length; el < elen; el += 1) {
+					var element = elements[el];
+					var args = templateTags[i].arguments;
+					var argumentValues = [];
+					for (var argI = 0, argLen = args.length; argI < argLen; argI += 1) {
+						var argumentElement = element.getElementsByTagName(args[argI])[0];
+						argumentValues.push(argumentElement.innerHTML);
+					}
+					argumentValues.push(template);
+					var html = templateTags[i].callback.apply(this, argumentValues);
+					element.innerHTML = html;
+				}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			// var variable = this.getElementsByTagName("var")[0].innerHTML;
+			// var inclusiveOf = this.getElementsByTagName("in")[0].innerHTML;
+			// var byproduct = this.getElementsByTagName("do")[0].innerHTML;
+			//
+			// var scopes = inclusiveOf.split(".");
+			// var object = windows;
+			// for (var i = 0, len = scopes.length; i < len; i += 1) {
+			// 	object = object[scopes[i]];
+			// }
+			//
+			//
+			// var nodes = [];
+			// var re = /{{\s*([^}]+)\s*}}/g;
+			//
+			// while (item = re.exec(byproduct)) {
+			// 	console.log(item);
+			// }
+			//
+			// for (var i = 0, len = object.length; i < len; i += 1) {
+			//
+			// }
+			
+		};
+	}());
+	</script>
+</template>

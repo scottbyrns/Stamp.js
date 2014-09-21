@@ -8,6 +8,7 @@
 		<link rel="import" href="../stamps/bar-graph.html"></link>
 		<link rel="import" href="../stamps/pie-chart.html"></link>
 		<link rel="import" href="../stamps/mark-down.html"></link>
+		<link rel="import" href="../stamps/render-logic.html"></link>
 		<style>
 		section {
 			margin:10px;
@@ -46,6 +47,29 @@
 				<qr-code>
 					<data>http://scottbyrns.github.io/Stamp.js</data>
 				</qr-code>
+			</example-stamp>
+			<example-stamp>
+				<script type="text/javascript">
+				testValues = [
+					{"a":1},
+					{"a":2},
+					{"a":3},
+					{"a":4},
+					{"a":5},
+					{"a":6}
+				]
+				</script>
+				<render-logic>
+					<repeat-for>
+						<variable>test</variable>
+						<in>testValues</in>
+						<do>
+							<qr-code>
+								<data>{{test.a}}</data>
+							</qr-code>
+						</do>
+					</repeat-for>
+				</render-logic>
 			</example-stamp>
 			<code-snippet>
 				<name>QR Code</name>
