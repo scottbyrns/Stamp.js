@@ -12,6 +12,7 @@
 				this.createShadowRoot().appendChild(clone);
 				if (constructor) {
 					try {
+						this.addEventListener("DOMCharacterDataModified", window[constructor].bind(this));
 						window[constructor].call(this);
 					}
 					catch (e) {}

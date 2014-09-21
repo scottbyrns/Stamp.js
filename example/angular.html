@@ -1,0 +1,24 @@
+<html ng-app>
+	<head>
+		<title>Stamp.js Example</title>
+		<link rel="import" href="http://svns.mobi:8888/qrcode.html"></link>
+		
+		 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Stamp.js</h1>
+		</header>
+		<section>
+				<qr-code>
+					<data>sdfg {{qrcode}}</data>
+				</qr-code>
+		</section>
+		<section>
+			<input type="range" ng-model="qrcode">
+		</section>
+		
+		<script type="text/javascript" src="../Stamp.js"></script>
+
+	</body>
+</html>
