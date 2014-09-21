@@ -24,7 +24,7 @@ Stamp.js is a shadow dom library to stamp out new elements in a document from im
 
 #####a-stamp.html
 ```
-<template>
+<template element="a-stamp">
 	<style>
 	div {
 		display:inline-block;
@@ -56,11 +56,9 @@ To import templates use the link import now available in new browsers.
 
 ```
 
-<link rel="import" id="a-strong-header" href="a-strong-header.html"></link>
+<link rel="import" href="a-stamp.html"></link>
 
 ```
-
-Stamp.js uses the id from the link to attach the template to a stamped out element.
 
 ####Templates
 
@@ -70,7 +68,7 @@ Every template must have a &lt;template /> tag for an opening and closing tag.
 Simply use the &lt;content /> selector to reference the values that will be mapped to the template.
 
 ```
-<template>
+<template element="a-stamp">
 	<strong>
 		<content select="h1"></content>
 	</strong>
@@ -81,10 +79,12 @@ In this example we select the h1 to populate the template. In this case wrapping
 
 To provide this element with its required values we place an &lt;h1 /> tag in our stamped element.
 
+Stamp.js uses the element attribute of the template to attach the template to a stamped out element tag.
+
 ```
-<a-strong-header>
-	<h1>Strong Header</h1>
-</a-strong-header>
+<a-stamp>
+	<h1>Stamped Header</h1>
+</a-stamp>
 ```
 
 ####Stamp.js
