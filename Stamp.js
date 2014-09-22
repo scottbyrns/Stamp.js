@@ -6,7 +6,8 @@
 		var templateNode = elementTemplate.getElementsByTagName("template")[0];
 		var elementName = templateNode.getAttribute("element");
 		var constructor = templateNode.getAttribute("constructor");
-		var proto = Object.create(HTMLElement.prototype, {
+		var doesExtend = templateNode.getAttribute("extends");
+		var propertiesObject = {
 			createdCallback: { value: function() {
 				var clone = document.importNode(templateNode.content, true);
 				this.createShadowRoot().appendChild(clone);
@@ -18,8 +19,15 @@
 					catch (e) {}
 				}
 			}}
-		});
-		document.registerElement(elementName, {prototype: proto});
+		};
+		var proto = Object.create(HTMLElement.prototype, propertiesObject);
+		var registrationForm = {
+			prototype: proto
+		};
+		if (doesExtend != null) {
+			registrationForm.extends = doesExtend;
+		}
+		document.registerElement(elementName, registrationForm);
 		document.createElement(elementName);
 	};
 	var links = document.getElementsByTagName("link");

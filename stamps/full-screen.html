@@ -1,0 +1,25 @@
+<template element="full-screen" extends="button" constructor="FullScreen">
+	<content></content>
+	<script type="text/javascript">
+	FullScreen = (typeof FullScreen === "function") ? FullScreen : (function () {
+		function launchIntoFullscreen(element) {
+		  if(element.requestFullscreen) {
+		    element.requestFullscreen();
+		  } else if(element.mozRequestFullScreen) {
+		    element.mozRequestFullScreen();
+		  } else if(element.webkitRequestFullscreen) {
+		    element.webkitRequestFullscreen();
+		  } else if(element.msRequestFullscreen) {
+		    element.msRequestFullscreen();
+		  }
+		}
+	
+		return function () {
+			console.log('created-full-screen-button');
+			this.addEventListener("click", function () {
+				launchIntoFullscreen(document.body);
+			});
+		};
+	}());
+	</script>
+</template>

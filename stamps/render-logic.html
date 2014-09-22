@@ -1,0 +1,169 @@
+<template element="render-logic" constructor="RenderLogic">
+	
+	<content></content>
+	
+	<script type="text/javascript">
+	RenderLogic = (typeof RenderLogic === "function") ? RenderLogic : (function () {
+		var re = /{{\s*([^}]+)\s*}}/g;
+		
+		var render = function (template, model) {
+
+			var clone = template;
+			while (item = re.exec(clone)) {
+				try {
+					var replacement = model;
+					var itemScope = item[1].split(".");
+					if (itemScope.length > 1) {
+						for (var iSi = 1, iSlen = itemScope.length; iSi < iSlen; iSi += 1) {
+							replacement = replacement[itemScope[iSi]];
+						}
+					
+					}
+				
+					if (item[1] in model) {
+						clone = clone.replace("{{" + item[1] + "}}", model[item[1]]);	
+					}
+					
+				}
+				catch (e) {
+					console.error(e);
+				}
+			}
+			console.log(clone);
+			
+			return clone;
+		};
+		
+		var templateTags = [
+		{
+			tag: "for-each",
+			arguments: [
+				"variable",
+				"in",
+				"do"
+			],
+			callback: function (value, inclusive, byproduct, template, model) {
+				try {
+					var scopes = inclusive.split(".");
+					var object = model;
+					if (scopes.length > 1) {
+						for (var i = 1, len = scopes.length; i < len; i += 1) {
+							object = object[scopes[i]];
+						}						
+					}
+					else {}
+					
+
+					var re = /{{\s*([^}]+)\s*}}/g;
+					var nodes = [];
+					
+					for (var i = 0, len = object.length; i < len; i += 1) {
+						try {
+							Object.observe(object[i], function () {
+								RenderLogic.call(this, template);
+							}.bind(this));
+						}
+						catch (e) {}
+						var dataModel = {};
+						dataModel[value]=object[i];
+						nodes.push(render(byproduct, dataModel));
+						
+					}
+
+					return nodes.join("");
+
+				}
+				catch (e) {
+					console.error(e);
+				}
+			}
+		},
+		{
+			tag: "if-true",
+			callback: function () {
+				
+			}
+		}
+		];
+		
+		return function (template) {
+			try {
+			
+				var model = this.getAttribute("data-model");
+			
+				var scopes = model.split(".");
+				var object = window;
+				if (scopes.length > 1) {
+					for (var i = 1, len = scopes.length; i < len; i += 1) {
+						object = object[scopes[i]];
+					}
+				}
+				else {
+					object = object[model];
+				}
+			
+				model = object;
+			
+				if (template) {
+					this.innerHTML = template;
+				}
+				template = this.innerHTML;
+			
+				this.innerHTML = render(template, model);
+
+			
+				for (var i = 0, len = templateTags.length; i < len; i += 1) {
+					var elements = this.getElementsByTagName(templateTags[i].tag);
+					for (var el = 0, elen = elements.length; el < elen; el += 1) {
+						var element = elements[el];
+						var args = templateTags[i].arguments;
+						var argumentValues = [];
+						for (var argI = 0, argLen = args.length; argI < argLen; argI += 1) {
+							var argumentElement = element.getElementsByTagName(args[argI])[0];
+							argumentValues.push(argumentElement.innerHTML);
+						}
+						argumentValues.push(template);
+						// argumentValues.push(model);
+						
+						var amodel = element.getAttribute("data-model");
+						if (amodel) {
+							var ascopes = amodel.split(".");
+							var aobject = window;
+							if (ascopes.length > 1) {
+								for (var ai = 1, alen = ascopes.length; ai < alen; ai += 1) {
+									aobject = aobject[ascopes[ai]];
+								}
+							}
+							else {
+								
+								aobject = aobject[amodel];
+							}
+			
+							amodel = aobject;
+
+							argumentValues.push(amodel);
+							
+						}
+						else {
+							argumentValues.push(model);
+						}
+						
+						var html = templateTags[i].callback.apply(this, argumentValues);
+						element.innerHTML = html;
+					}
+				}
+			
+			
+			
+			
+			
+			
+			}
+			catch (e) {
+				// console.error(e);
+			}
+			
+		};
+	}());
+	</script>
+</template>

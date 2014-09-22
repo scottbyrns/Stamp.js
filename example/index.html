@@ -9,6 +9,9 @@
 		<link rel="import" href="../stamps/pie-chart.html"></link>
 		<link rel="import" href="../stamps/mark-down.html"></link>
 		<link rel="import" href="../stamps/json-table.html"></link>
+		<link rel="import" href="../stamps/render-logic.html"></link>
+		<link rel="import" href="../stamps/client-observer.html"></link>
+		<link rel="import" href="../stamps/full-screen.html"></link>
 		<style>
 		section {
 			margin:10px;
@@ -23,6 +26,7 @@
 	<body>
 		<header>
 			<h1>Stamp.js</h1>
+			<button is="full-screen">Full Screen</button>
 		</header>
 		<section>
 			<example-stamp>
@@ -59,6 +63,20 @@
 			</code-snippet>
 		</section>
 		<section>
+			<script type="text/javascript">
+			months = ["January", "February", "March", "April", "May", "June", "July"];
+			</script>
+			<render-logic data-model="window.location">
+				<for-each data-model="window.months">
+					<variable>month</variable>
+					<in>months</in>
+					<do>
+						<span>{{month}}</span>
+					</do>
+				</for-each>
+				<input type="text" id="binding" value="{{href}}" />
+			</render-logic>
+			
 			<example-stamp>
 				<bar-graph>
 					<width>600</width>
@@ -205,7 +223,9 @@ Simply use the &lt;content /> selector to reference the values that will be mapp
 		]
 			</json-table>			
 		</section>
-		
+			<footer>
+				<client-observer></client-observer>
+			</footer>
 		<script type="text/javascript" src="../Stamp.js"></script>
 
 	</body>
