@@ -2,17 +2,23 @@
 	<content></content>
 	<script type="text/javascript">
 	FullScreen = (typeof FullScreen === "function") ? FullScreen : (function () {
-		function launchIntoFullscreen(element) {
+		
+		var launchIntoFullscreen = function (element) {
+			
 		  if(element.requestFullscreen) {
 		    element.requestFullscreen();
-		  } else if(element.mozRequestFullScreen) {
+		  }
+		  else if(element.mozRequestFullScreen) {
 		    element.mozRequestFullScreen();
-		  } else if(element.webkitRequestFullscreen) {
+		  }
+		  else if(element.webkitRequestFullscreen) {
 		    element.webkitRequestFullscreen();
-		  } else if(element.msRequestFullscreen) {
+		  }
+		  else if(element.msRequestFullscreen) {
 		    element.msRequestFullscreen();
 		  }
-		}
+		};
+		
 	
 		return function () {
 			console.log('created-full-screen-button');
