@@ -22,18 +22,19 @@
 			createdCallback: { value: function() {
 				var clone = document.importNode(templateNode.content, true);
 				this.createShadowRoot().appendChild(clone);
-				
 				var objectReference = firstClassElements[constructor];
-				if (objectReference && objectReference.prototype) {
+				if (objectReference && objectReference.scope.prototype) {
 					for (var property in objectReference.scope.prototype) {
+						console.log(property);
 						if (objectReference.scope.prototype.hasOwnProperty(property)) {
 							this.__proto__[property] = objectReference.scope.prototype[property];
 						}
 					}
 				}
+					console.log(this);
 				
-				if (firstClassElements[constructor] && firstClassElements[constructor].scope) {
-					firstClassElements[constructor].scope.call(this);
+				if (objectReference && objectReference.scope) {
+					objectReference.scope.call(this);
 					this.addEventListener("DOMCharacterDataModified", firstClassElements[constructor].scope.bind(this));
 				}
 			}}

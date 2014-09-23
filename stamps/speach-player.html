@@ -1,0 +1,90 @@
+<template element="speach-player" constructor="SpeachPlayer">
+	<style>span{display:none;}</style>
+	<span><content></content></span>
+    <script>
+	(function () {
+		var SpeachPlayer = function () {
+			
+            this.autoplay = true;
+            this.accent = 'en-US';
+            this.text = 'Enter text to have it spoken.';
+			
+            if ('speechSynthesis' in window) {
+                this.speech = new SpeechSynthesisUtterance();
+				this.text = this.innerHTML;
+				console.log(this.__proto__);
+				this.ready();
+            }
+            else {
+                console.error('Your browser do not support the Web Speech API');
+            }
+		};
+		SpeachPlayer.prototype = {
+            /* -- Attributes ------------------------------------------------ */
+
+
+            /* -- Lifecycle ------------------------------------------------- */
+            ready: function() {
+
+                // Initialize attributes
+                this.textChanged();
+                this.accentChanged();
+
+                // Initialize event listeners
+                [
+                    'start',
+                    'end',
+                    'error',
+                    'pause',
+                    'resume'
+                ].forEach(this.propagateEvent.bind(this));
+
+                if (this.autoplay) {
+                    this.speak();
+                }
+            },
+            accentChanged: function() {
+                this.speech.lang = this.accent;
+            },
+            textChanged: function() {
+                this.speech.text = this.text;
+            },
+
+            /* -- Methods --------------------------------------------------- */
+            speak: function() {
+                window.speechSynthesis.speak(this.speech);
+            },
+            cancel: function() {
+                window.speechSynthesis.cancel();
+            },
+            pause: function() {
+                window.speechSynthesis.pause();
+            },
+            resume: function() {
+                window.speechSynthesis.resume();
+            },
+
+            /* -- Events ---------------------------------------------------- */
+            propagateEvent: function (eventName) {
+                // this.speech.addEventListener(eventName, this.fire.bind(this, eventName));
+            }
+        };
+		
+		
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+		
+			name: "SpeachPlayer",
+			scope: SpeachPlayer
+		
+		});
+	
+	
+	
+		document.dispatchEvent(event);
+	
+		
+	}());
+      </script>
+</template>
