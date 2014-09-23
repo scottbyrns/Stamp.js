@@ -2,7 +2,7 @@
 	<div>
 	</div>
 	<script>
-	JsonTable = (typeof JsonTable === "javascript") ? JsonTable : (function () {
+	(function () {
 
 		/*
 		Copyright (c) 2009 James Padolsey.  All rights reserved.
@@ -780,13 +780,27 @@
 	
 		})();
 
-		return function () {
+		var constructor = function () {
 			var tbl = prettyPrint(JSON.parse(this.innerHTML));
 			// this.shadowRoot.innerHTML = "";
 			this.shadowRoot.getElementsByTagName("div")[0].innerHTML = "";
 			this.shadowRoot.getElementsByTagName("div")[0].appendChild(tbl);
 		
 		};
+		
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+			
+			name: "JsonTable",
+			scope: constructor
+			
+		});
+		
+		
+		
+		document.dispatchEvent(event);
+		
 	}());
 	</script>
 

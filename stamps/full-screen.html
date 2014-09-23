@@ -1,31 +1,56 @@
-<template element="full-screen" extends="button" constructor="FullScreen">
+<template element="full-screen" constructor="FullScreen">
 	<content></content>
 	<script type="text/javascript">
-	FullScreen = (typeof FullScreen === "function") ? FullScreen : (function () {
-		
-		var launchIntoFullscreen = function (element) {
-			
-		  if(element.requestFullscreen) {
-		    element.requestFullscreen();
-		  }
-		  else if(element.mozRequestFullScreen) {
-		    element.mozRequestFullScreen();
-		  }
-		  else if(element.webkitRequestFullscreen) {
-		    element.webkitRequestFullscreen();
-		  }
-		  else if(element.msRequestFullscreen) {
-		    element.msRequestFullscreen();
-		  }
-		};
+	(function () {
 		
 	
-		return function () {
-			console.log('created-full-screen-button');
+		var FullScreen = function () {
 			this.addEventListener("click", function () {
-				launchIntoFullscreen(document.body);
+				this.start();
 			});
 		};
+		
+		FullScreen.prototype = {
+			start: function () {
+				var element = this;
+	  		  if(element.requestFullscreen) {
+	  		    element.requestFullscreen();
+	  		  }
+	  		  else if(element.mozRequestFullScreen) {
+	  		    element.mozRequestFullScreen();
+	  		  }
+	  		  else if(element.webkitRequestFullscreen) {
+	  		    element.webkitRequestFullscreen();
+	  		  }
+	  		  else if(element.msRequestFullscreen) {
+	  		    element.msRequestFullscreen();
+	  		  }
+			},
+			stop: function () {
+	  		  if(document.exitFullscreen) {
+	  		    document.exitFullscreen();
+	  		  } else if(document.mozCancelFullScreen) {
+	  		    document.mozCancelFullScreen();
+	  		  } else if(document.webkitExitFullscreen) {
+	  		    document.webkitExitFullscreen();
+	  		  }
+			}
+		};
+		
+		
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+			
+			name: "FullScreen",
+			scope: FullScreen
+			
+		});
+		
+		
+		
+		document.dispatchEvent(event);
+		
 	}());
 	</script>
 </template>

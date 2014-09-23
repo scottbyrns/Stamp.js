@@ -3,7 +3,7 @@
 	<content></content>
 	
 	<script type="text/javascript">
-	RenderLogic = (typeof RenderLogic === "function") ? RenderLogic : (function () {
+	(function () {
 		var re = /{{\s*([^}]+)\s*}}/g;
 		
 		var render = function (template, model) {
@@ -86,7 +86,7 @@
 		}
 		];
 		
-		return function (template) {
+		var RenderLogic = function (template) {
 			try {
 			
 				var model = this.getAttribute("data-model");
@@ -164,6 +164,22 @@
 			}
 			
 		};
+		
+	
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+		
+			name: "RenderLogic",
+			scope: RenderLogic
+		
+		});
+	
+	
+	
+		document.dispatchEvent(event);
+	
+		
 	}());
 	</script>
 </template>

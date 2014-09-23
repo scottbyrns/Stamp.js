@@ -12,7 +12,7 @@
 	}
 	</style>
 	<script>
-	PieChart = (typeof PieChart === "function") ? PieChart : (function () {
+	(function () {
 		
 		/*!
 		 * Chart.js
@@ -3394,7 +3394,7 @@
 
 		}).call(this);
 		
-		return function () {
+		var constructor = function () {
 			try {
 				this.getElementsByTagName("data")[0].addEventListener("contentchanged", function () {
 					alert("No Effect");
@@ -3414,6 +3414,20 @@
 			catch (e) {}
 		}
 
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+			
+			name: "PieChart",
+			scope: constructor
+			
+		});
+		
+		
+		
+		document.dispatchEvent(event);
+		
+		
 		
 	}());
 	

@@ -1,4 +1,3 @@
-// Stamp - 1.0.0-SNAPSHOT
 (function () {
 	var firstClassElements = {};
 	var stamp = function (template) {
@@ -21,13 +20,15 @@
 				this.createShadowRoot().appendChild(clone);
 				
 				var objectReference = firstClassElements[constructor];
-				for (var property in objectReference.scope.prototype) {
-					if (objectReference.scope.prototype.hasOwnProperty(property)) {
-						this.__proto__[property] = objectReference.scope.prototype[property];
+				if (objectReference && objectReference.prototype) {
+					for (var property in objectReference.scope.prototype) {
+						if (objectReference.scope.prototype.hasOwnProperty(property)) {
+							this.__proto__[property] = objectReference.scope.prototype[property];
+						}
 					}
 				}
 				
-				if (firstClassElements[constructor]) {
+				if (firstClassElements[constructor] && firstClassElements[constructor].scope) {
 					firstClassElements[constructor].scope.call(this);
 					this.addEventListener("DOMCharacterDataModified", firstClassElements[constructor].scope.bind(this));
 				}
