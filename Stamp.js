@@ -2,6 +2,10 @@
 	var firstClassElements = {};
 	var stamp = function (template) {
 		var elementTemplate = template.import;
+		if (null == elementTemplate) {
+			console.warn("Bad template include.", template);
+			return;
+		}
 		var templateNode = elementTemplate.getElementsByTagName("template")[0];
 		var constructor = templateNode.getAttribute("constructor");
 		var stampElement = function (event) {
