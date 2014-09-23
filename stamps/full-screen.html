@@ -1,0 +1,56 @@
+<template element="full-screen" constructor="FullScreen">
+	<content></content>
+	<script type="text/javascript">
+	(function () {
+		
+	
+		var FullScreen = function () {
+			this.addEventListener("click", function () {
+				this.start();
+			});
+		};
+		
+		FullScreen.prototype = {
+			start: function () {
+				var element = this;
+	  		  if(element.requestFullscreen) {
+	  		    element.requestFullscreen();
+	  		  }
+	  		  else if(element.mozRequestFullScreen) {
+	  		    element.mozRequestFullScreen();
+	  		  }
+	  		  else if(element.webkitRequestFullscreen) {
+	  		    element.webkitRequestFullscreen();
+	  		  }
+	  		  else if(element.msRequestFullscreen) {
+	  		    element.msRequestFullscreen();
+	  		  }
+			},
+			stop: function () {
+	  		  if(document.exitFullscreen) {
+	  		    document.exitFullscreen();
+	  		  } else if(document.mozCancelFullScreen) {
+	  		    document.mozCancelFullScreen();
+	  		  } else if(document.webkitExitFullscreen) {
+	  		    document.webkitExitFullscreen();
+	  		  }
+			}
+		};
+		
+		
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+			
+			name: "FullScreen",
+			scope: FullScreen
+			
+		});
+		
+		
+		
+		document.dispatchEvent(event);
+		
+	}());
+	</script>
+</template>

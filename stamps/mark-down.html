@@ -9,7 +9,7 @@
 		<content></content>
 	</div>
 	<script>
-	MarkDown = (typeof MarkDown === "function") ? MarkDown : (function () {
+	(function () {
 	
 		/**
 		 * marked - a markdown parser
@@ -1284,9 +1284,24 @@
 		  return this || (typeof window !== 'undefined' ? window : global);
 		}());
 	
-		return function () {
+		var constructor = function () {
 			this.shadowRoot.getElementsByTagName("div")[0].innerHTML = marked(this.innerHTML);
 		};
+		
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+			
+			name: "MarkDown",
+			scope: constructor
+			
+		});
+		
+		
+		
+		document.dispatchEvent(event);
+		
+		
 		
 	}());
 	</script>

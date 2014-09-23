@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Stamp.js Example</title>
@@ -8,7 +9,12 @@
 		<link rel="import" href="../stamps/bar-graph.html"></link>
 		<link rel="import" href="../stamps/pie-chart.html"></link>
 		<link rel="import" href="../stamps/mark-down.html"></link>
+		<link rel="import" href="../stamps/json-table.html"></link>
 		<link rel="import" href="../stamps/render-logic.html"></link>
+		<link rel="import" href="../stamps/client-observer.html"></link>
+		<link rel="import" href="../stamps/full-screen.html"></link>
+		<link rel="import" href="../stamps/current-sun.html"></link>
+		<link rel="import" href="../stamps/speach-player.html"></link>
 		<style>
 		section {
 			margin:10px;
@@ -23,6 +29,7 @@
 	<body>
 		<header>
 			<h1>Stamp.js</h1>
+			<speach-player>This document will provide you an overview of how to consume various first class html elements created with Stamp js</speach-player>
 		</header>
 		<section>
 			<example-stamp>
@@ -43,33 +50,11 @@
 			</code-snippet>
 		</section>
 		<section>
+			<h2>QR Code</h2>
 			<example-stamp>
 				<qr-code>
 					<data>http://scottbyrns.github.io/Stamp.js</data>
 				</qr-code>
-			</example-stamp>
-			<example-stamp>
-				<script type="text/javascript">
-				testValues = [
-					{"a":1},
-					{"a":2},
-					{"a":3},
-					{"a":4},
-					{"a":5},
-					{"a":6}
-				]
-				</script>
-				<render-logic>
-					<repeat-for>
-						<variable>test</variable>
-						<in>testValues</in>
-						<do>
-							<qr-code>
-								<data>{{test.a}}</data>
-							</qr-code>
-						</do>
-					</repeat-for>
-				</render-logic>
 			</example-stamp>
 			<code-snippet>
 				<name>QR Code</name>
@@ -82,6 +67,44 @@
 			</code-snippet>
 		</section>
 		<section>
+			<h2>Render Logic</h2>
+			<script type="text/javascript">
+			months = ["January", "February", "March", "April", "May", "June", "July"];
+			</script>
+			<render-logic data-model="window.location">
+				<for-each data-model="window.months">
+					<variable>month</variable>
+					<in>months</in>
+					<do>
+						<span>{{month}}</span>
+					</do>
+				</for-each>
+				<input type="text" id="binding" value="{{href}}" />
+			</render-logic>
+			
+			<code-snippet>
+				<name>Render Logic</name>
+				<type>javascript</type>
+				<code>
+<script type="text/javascript">
+months = ["January", "February", "March", "April", "May", "June", "July"];
+</script>
+<render-logic data-model="window.location">
+	<for-each data-model="window.months">
+		<variable>month</variable>
+		<in>months</in>
+		<do>
+			<span>{{month}}</span>
+		</do>
+	</for-each>
+	<input type="text" id="binding" value="{{href}}" />
+</render-logic>
+
+				</code>
+			</code-snippet>
+		</section>
+		<section>
+			<h2>Bar Graph</h2>
 			<example-stamp>
 				<bar-graph>
 					<width>600</width>
@@ -121,6 +144,7 @@
 		</section>
 		<section>
 			<example-stamp>
+				<h2>Pie Chart</h2>
 				<pie-chart>
 					<width>400</width>
 					<height>400</height>
@@ -184,31 +208,67 @@
 		</section>
 		
 		<section>
-			
+			<h2>JSON Table</h2>
 			<example-stamp>
-				<mark-down>
-
-####Mark Down
-
-Stamp.js uses the new template tag to populate the shadow dom of stamped elements.
-
-Every template must have a &lt;template /> tag for an opening and closing tag.
-Simply use the &lt;content /> selector to reference the values that will be mapped to the template.
-
-```
-<template element="a-stamp">
-	<strong>
-		<content select="h1"></content>
-	</strong>
-</template>
-```
-
-				</mark-down>
 			</example-stamp>
-			
+			<json-table>
+		[
+		    {
+		        "value": 300,
+		        "color":"#F7464A",
+		        "highlight": "#FF5A5E",
+		        "label": "China"
+		    },
+		    {
+		        "value": 50,
+		        "color": "#46BFBD",
+		        "highlight": "#5AD3D1",
+		        "label": "Europe"
+		    },
+		    {
+		        "value": 100,
+		        "color": "#FDB45C",
+		        "highlight": "#FFC870",
+		        "label": "Africa"
+		    }
+		]
+			</json-table>	
+			<code-snippet>
+			<name>JSON Table</name>
+			<type>xml</type>
+			<code>
+<json-table>
+[
+	{
+	    "value": 300,
+	    "color":"#F7464A",
+	    "highlight": "#FF5A5E",
+	    "label": "China"
+	},
+	{
+	    "value": 50,
+	    "color": "#46BFBD",
+	    "highlight": "#5AD3D1",
+	    "label": "Europe"
+	},
+	{
+	    "value": 100,
+	    "color": "#FDB45C",
+	    "highlight": "#FFC870",
+	    "label": "Africa"
+	}
+]
+</json-table>	
+			</code>
+		</code-snippet>		
 		</section>
-		
-		<script type="text/javascript" src="../javascripts/Stamp.js"></script>
+		<section>
+			<current-sun></current-sun>
+		</section>
+			<footer>
+				<client-observer></client-observer>
+			</footer>
+		<script type="text/javascript" src="../Stamp.js"></script>
 
 	</body>
 </html>

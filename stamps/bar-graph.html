@@ -3394,7 +3394,7 @@
 
 		}).call(this);
 		
-		return function () {
+		var BarGraph = function () {
 			try {
 				this.getElementsByTagName("data")[0].addEventListener("contentchanged", function () {
 					alert("No Effect");
@@ -3412,6 +3412,20 @@
 			}
 			catch (e) {}
 		}
+		
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+			
+			name: "BarGraph",
+			scope: BarGraph
+			
+		});
+		
+		
+		
+		document.dispatchEvent(event);
+		
 
 		
 	}());

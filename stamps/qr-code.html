@@ -11,14 +11,13 @@
 	:host div {
 		padding:0px;
 		margin:0px;
-		margin-bottom: -5px;
 	}
 	
 	
 	</style>
 	<script>
 	
-	QRCode = (typeof QRCode === "function") ? QRCode : (function () {
+	(function () {
 		var QRCode = (function(){
 
 		/* Quick overview: QR code composed of 2D array of modules (a rectangular
@@ -772,13 +771,28 @@
 		return QRCode;
 		})();
 
-		return function () {
+		var constructor = function () {
 			try {
 				var data = this.getElementsByTagName("data")[0].innerHTML;
 				this.shadowRoot.getElementsByTagName("div")[0].innerHTML = "<data><img src=\"" + QRCode.generatePNG(data) + '" /></data>';
 			}
 			catch (e) {}
 		}
+		
+		
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+			
+			name: "QRCode",
+			scope: constructor
+			
+		});
+		
+		
+		
+		document.dispatchEvent(event);
+		
 
 		
 	}());

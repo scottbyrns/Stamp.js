@@ -1,0 +1,42 @@
+<template element="closed-scope-test" constructor="ClosedScopeTest">
+	
+	<seciton>
+		<content></content>
+	</section>
+	<script type="text/javascript">
+	(function () {
+	
+	
+		var ClosedScopeTest = function () {
+			
+			this.bob = "asdf";
+			this.fred = "123";
+			
+		};
+		
+		ClosedScopeTest.prototype = {
+			
+			execute: function () {
+				console.log(this.bob);
+			}
+			
+		};
+
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+			
+			name: "ClosedScopeTest",
+			scope: ClosedScopeTest
+			
+		});
+		
+		
+		
+		document.dispatchEvent(event);
+		
+		
+	}());
+	</script>
+	
+</template>

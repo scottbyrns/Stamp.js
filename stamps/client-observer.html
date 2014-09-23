@@ -1,0 +1,57 @@
+<template element="client-observer" constructor="ClientObserver">
+	<style>
+	:host {
+/*		width:100px;
+		height:100px;*/
+		display:inline-block;
+	    -webkit-transition: all 0.5s ease-in;
+	    transition: all 0.5s ease-in;
+		-webkit-transform: scale(1.0, 1.0);
+		-webkit-filter: blur(0px);
+	}
+	img.flash {
+	    -webkit-transition: all 0.5s ease-out;
+	    transition: all 0.5s ease-out;
+		-webkit-filter: blur(13px);
+/*		-webkit-transform: scale(1.4, 1.4);*/
+	}
+	</style>
+	<img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEwMDAiIHdpZHRoPSI5NzUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTQ4Ny41IDE1NS4wNjNjMjkxLjI1IDAgNDg3LjUgMzQwIDQ4Ny41IDM0MHMtMTk2LjI1IDMzOC43NSAtNDg3LjUgMzM4Ljc1IC00ODcuNSAtMzM4Ljc1IC00ODcuNSAtMzM4Ljc1IDE5Ni4yNSAtMzQwIDQ4Ny41IC0zNDB6bTAgNTc4Ljc1YzEzMS4yNSAwIDIzOC43NSAtMTA3LjUgMjM4Ljc1IC0yMzguNzVzLTEwNy41IC0yMzguNzUgLTIzOC43NSAtMjM4Ljc1IC0yMzguNzUgMTA3LjUgLTIzOC43NSAyMzguNzUgMTA3LjUgMjM4Ljc1IDIzOC43NSAyMzguNzV6bTEwNy41IC0yMzguNzVjMCA1OC43NSAtNTAgMTA2LjI1IC0xMDcuNSAxMDYuMjUgLTU4Ljc1IDAgLTEwNi4yNSAtNDcuNSAtMTA2LjI1IC0xMDYuMjUgMCAtNTcuNSA0Ny41IC0xMDcuNSAxMDYuMjUgLTEwNy41IDU3LjUgMCAxMDcuNSA1MCAxMDcuNSAxMDcuNXoiLz48L3N2Zz4=" width="25px" />
+	
+	<script>
+	(function () {
+
+		var ClientObserver = function () {
+			if (this.parentNode == undefined) {
+				return false;
+			}
+			document.addEventListener("register-event", function () {
+				console.log(arguments);
+				this.shadowRoot.getElementsByTagName("img")[0].className = "flash";
+				setTimeout(function () {
+					this.shadowRoot.getElementsByTagName("img")[0].className = "";
+				}.bind(this), 500);
+			}.bind(this));
+		}
+		
+	
+	
+
+		var event = document.createEvent("CustomEvent");
+		event.initCustomEvent("register-stamp", true, true, {
+		
+			name: "ClientObserver",
+			scope: ClientObserver
+		
+		});
+	
+	
+	
+		document.dispatchEvent(event);
+	
+	
+	}());
+	
+	</script>
+	
+</template>
